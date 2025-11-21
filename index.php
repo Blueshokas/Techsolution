@@ -50,10 +50,6 @@
             <h2>Nos Services</h2>
             <div class="services">
                 <div class="service-card">
-                    <h3>Gestion de parc</h3>
-                    <p>Gestion complète de votre parc informatique et maintenance des équipements.</p>
-                </div>
-                <div class="service-card">
                     <h3>Développement logiciel</h3>
                     <p>Création d'applications sur mesure et solutions logicielles personnalisées.</p>
                 </div>

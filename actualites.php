@@ -14,6 +14,11 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualités - TechSolutions</title>
     <link rel="stylesheet" href="assets/style.css">
+    <style>
+        body { min-height: 100vh; display: flex; flex-direction: column; }
+        .section { flex: 1; }
+        footer { margin-top: auto; }
+    </style>
 </head>
 <body>
     <header>

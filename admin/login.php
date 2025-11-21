@@ -36,22 +36,16 @@ if ($_POST) {
         .login-box h1 { text-align: center; margin-bottom: 1.5rem; color: #333; }
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; }
-        .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; }
+        .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
         .btn { width: 100%; padding: 0.8rem; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
         .btn:hover { background: #0056b3; }
         .error { color: red; text-align: center; margin-bottom: 1rem; }
-        .info { background: #d1ecf1; color: #0c5460; padding: 0.8rem; border-radius: 4px; margin-bottom: 1rem; text-align: center; }
+        .back-link { text-align: center; margin-top: 1rem; }
     </style>
 </head>
 <body>
     <div class="login-box">
         <h1>Admin TechSolutions</h1>
-        
-        <div class="info">
-            <strong>Identifiants :</strong><br>
-            admin / admin123
-        </div>
-        
         <?php if ($error): ?>
             <div class="error"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
@@ -68,7 +62,7 @@ if ($_POST) {
             <button type="submit" class="btn">Se connecter</button>
         </form>
         
-        <p style="text-align: center; margin-top: 1rem;">
+        <p class="back-link">
             <a href="../index.php">← Retour au site</a>
         </p>
     </div>

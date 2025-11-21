@@ -1,5 +1,5 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Arial, sans-serif; line-height: 1.6; }
+body { font-family: Arial, sans-serif; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 header { background: #333; color: white; padding: 1rem 0; }
@@ -15,7 +15,7 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
 .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
 
-.section { padding: 3rem 0; }
+.section { padding: 3rem 0; flex: 1; }
 .section h1, .section h2 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: #333; }
 .section-gray { background: #f8f9fa; }
 
@@ -52,9 +52,420 @@ textarea { height: 100px; resize: vertical; }
 .btn { display: inline-block; padding: 0.8rem 2rem; background: #3498db; color: white; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; }
 .btn:hover { background: #2980b9; }
 
-footer { background: #333; color: white; text-align: center; padding: 2rem 0; margin-top: 3rem; }
+footer { background: #333; color: white; text-align: center; padding: 2rem 0; margin-top: auto; }
 footer a { color: #ccc; }
 
 @media (max-width: 768px) {
     .contact-content { grid-template-columns: 1fr; }
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+}
+    
+.div1 {
+    grid-column: span 5 / span 5;
+    grid-row: span 3 / span 3;
+}
+
+/* Styles pour la page de login admin */
+body {
+    font-family: Arial, sans-serif;
+}
+
+html.login-page body {
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.login-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+.login-box h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.login-box .form-group {
+    margin-bottom: 1rem;
+}
+
+.login-box .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.login-box .form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login-box .btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-box .btn:hover {
+    background: #0056b3;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Styles pour les pages admin */
+.admin-page body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f8f9fa;
+}
+
+.admin-header {
+    background: #343a40;
+    color: white;
+    padding: 1rem 0;
+}
+
+.admin-header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 20px;
+}
+
+.welcome {
+    background: white;
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.welcome h1 {
+    color: #28a745;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.action-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.action-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.admin-btn {
+    padding: 0.8rem 1.5rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.admin-btn:hover {
+    background: #0056b3;
+}
+
+.btn-danger {
+    background: #dc3545;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-success {
+    background: #28a745;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-secondary {
+    background: #6c757d;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+.form-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.admin-form-group {
+    margin-bottom: 1rem;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.admin-form-group input,
+.admin-form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.admin-form-group textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.pc-list,
+.actualites-list,
+.messages-list {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.pc-item {
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.pc-item:last-child {
+    border-bottom: none;
+}
+
+.pc-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.pc-price {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.actualite-item,
+.message-item {
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 0;
+}
+
+.actualite-item:last-child,
+.message-item:last-child {
+    border-bottom: none;
+}
+
+.actualite-header,
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.actualite-title,
+.message-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.actualite-date,
+.message-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.message-info {
+    display: flex;
+    gap: 2rem;
+}
+
+.message-email {
+    color: #007bff;
+}
+
+.message-content {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.message-alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 4px;
+}
+
+.admin-message {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 4px;
+}
+
+.admin-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.nav {
+    margin-bottom: 2rem;
+}
+
+.nav a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.admin-container-small {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.admin-container-medium {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Styles pour les périphériques */
+.peripheriques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.dept-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dept-card h3 {
+    color: #007bff;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 0.5rem;
+}
+
+.peripherique-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.peripherique-item {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.peripherique-item strong {
+    color: #333;
+    display: inline-block;
+    min-width: 80px;
 }

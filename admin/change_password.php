@@ -38,59 +38,45 @@ if ($_POST) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="admin-page">
 <head>
     <meta charset="UTF-8">
     <title>Changer mot de passe - TechSolutions</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #f8f9fa; }
-        .header { background: #343a40; color: white; padding: 1rem 0; }
-        .header .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .container { max-width: 500px; margin: 2rem auto; padding: 0 20px; }
-        .form-section { background: white; padding: 2rem; border-radius: 8px; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
-        .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; }
-        .btn { padding: 0.8rem 1.5rem; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; }
-        .btn:hover { background: #0056b3; }
-        .btn-danger { background: #dc3545; }
-        .message { padding: 1rem; margin-bottom: 1rem; background: #d4edda; color: #155724; border-radius: 4px; }
-        .error { background: #f8d7da; color: #721c24; }
-    </style>
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-    <header class="header">
+    <header class="admin-header">
         <div class="container">
             <h1>Changer le mot de passe</h1>
             <div>
-                <a href="dashboard.php" class="btn">← Dashboard</a>
-                <a href="logout.php" class="btn btn-danger">Déconnexion</a>
+                <a href="dashboard.php" class="admin-btn">← Dashboard</a>
+                <a href="logout.php" class="admin-btn btn-danger">Déconnexion</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <div class="admin-container-small">
         <?php if ($message): ?>
-            <div class="message <?php echo strpos($message, 'succès') !== false ? '' : 'error'; ?>">
+            <div class="admin-message <?php echo strpos($message, 'succès') !== false ? '' : 'admin-error'; ?>">
                 <?php echo htmlspecialchars($message); ?>
             </div>
         <?php endif; ?>
 
         <div class="form-section">
             <form method="post">
-                <div class="form-group">
+                <div class="admin-form-group">
                     <label for="current_password">Mot de passe actuel *</label>
                     <input type="password" id="current_password" name="current_password" required>
                 </div>
-                <div class="form-group">
+                <div class="admin-form-group">
                     <label for="new_password">Nouveau mot de passe *</label>
                     <input type="password" id="new_password" name="new_password" required minlength="6">
                 </div>
-                <div class="form-group">
+                <div class="admin-form-group">
                     <label for="confirm_password">Confirmer le nouveau mot de passe *</label>
                     <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
                 </div>
-                <button type="submit" class="btn">Modifier</button>
+                <button type="submit" class="admin-btn">Modifier</button>
             </form>
         </div>
     </div>
