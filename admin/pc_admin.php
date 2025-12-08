@@ -11,14 +11,13 @@ $message = '';
 if ($_POST) {
     if ($_POST['action'] === 'add') {
         $nom = trim($_POST['nom']);
-        $description = trim($_POST['description']);
         $prix = (float)$_POST['prix'];
         $stock = (int)$_POST['stock'];
         
-        if ($nom && $description && $prix > 0) {
+        if ($nom && $prix > 0) {
             try {
-                $stmt = $pdo->prepare("INSERT INTO pcs (nom, description, prix, stock) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$nom, $description, $prix, $stock]);
+                $stmt = $pdo->prepare("INSERT INTO pcs (nom, prix, stock) VALUES (?, ?, ?)");
+                $stmt->execute([$nom, $prix, $stock]);
                 $message = "PC ajouté !";
             } catch(Exception $e) {
                 $message = "Erreur : " . $e->getMessage();
@@ -83,10 +82,7 @@ try {
                     <label for="stock">Stock *</label>
                     <input type="number" id="stock" name="stock" min="0" required>
                 </div>
-                <div class="admin-form-group">
-                    <label for="description">Description *</label>
-                    <textarea id="description" name="description" required></textarea>
-                </div>
+
                 <button type="submit" class="admin-btn">Ajouter</button>
             </form>
         </div>
@@ -104,11 +100,11 @@ try {
                 <div class="pc-item">
                     <div>
                         <div class="pc-name"><?php echo htmlspecialchars($pc['nom']); ?></div>
-                        <div style="font-size: 0.9rem; color: #666;"><?php echo htmlspecialchars(substr($pc['description'], 0, 50)); ?>...</div>
                     </div>
                     <div class="pc-price"><?php echo number_format($pc['prix'], 2, ',', ' '); ?> €</div>
                     <div><?php echo $pc['stock']; ?></div>
                     <div>
+                        <a href="view_pc_components.php?id=<?php echo $pc['id']; ?>" class="admin-btn" style="margin-right: 0.5rem;">Voir composants</a>
                         <form method="post" style="display: inline;">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id" value="<?php echo $pc['id']; ?>">

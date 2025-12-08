@@ -61,6 +61,18 @@ try {
                 <a href="pc_admin.php" class="admin-btn">Gérer le parc</a>
             </div>
             <div class="action-card">
+                <h3>Composants</h3>
+                <p>Gérer les composants disponibles.</p>
+                <a href="components_admin.php" class="admin-btn">Gérer composants</a>
+            </div>
+
+            <div class="action-card">
+                <h3>Configurations PC</h3>
+                <p>Gérer composants et périphériques des PC.</p>
+                <a href="pc_components_admin.php" class="admin-btn">Gérer composants</a>
+                <a href="pc_peripheriques_admin.php" class="admin-btn" style="margin-top: 0.5rem;">Gérer périphériques</a>
+            </div>
+            <div class="action-card">
                 <h3>Messages clients</h3>
                 <p>Consulter et répondre aux messages des clients.</p>
                 <a href="messages.php" class="admin-btn">Voir les messages</a>

@@ -74,19 +74,37 @@ try {
                     <label for="type">Type *</label>
                     <select id="type" name="type" required>
                         <option value="">Sélectionner un type</option>
-                        <option value="CPU">CPU</option>
-                        <option value="RAM">RAM</option>
-                        <option value="SSD">SSD</option>
-                        <option value="HDD">HDD</option>
-                        <option value="GPU">GPU</option>
-                        <option value="Carte Mère">Carte Mère</option>
-                        <option value="Boîtier">Boîtier</option>
-                        <option value="Alimentation">Alimentation</option>
-                        <option value="Refroidissement">Refroidissement</option>
-                        <option value="Écran">Écran</option>
-                        <option value="Clavier">Clavier</option>
-                        <option value="Souris">Souris</option>
-                        <option value="Autre">Autre</option>
+                        <optgroup label="Composants PC">
+                            <option value="CPU">CPU (Processeur)</option>
+                            <option value="Carte Mère">Carte Mère</option>
+                            <option value="RAM">RAM (Mémoire)</option>
+                            <option value="SSD">SSD</option>
+                            <option value="HDD">HDD (Disque dur)</option>
+                            <option value="GPU">GPU (Carte graphique)</option>
+                            <option value="Alimentation">Alimentation</option>
+                            <option value="Refroidissement">Refroidissement</option>
+                            <option value="Boîtier">Boîtier</option>
+                            <option value="Ventilateur">Ventilateur</option>
+                        </optgroup>
+                        <optgroup label="Périphériques">
+                            <option value="Écran">Écran</option>
+                            <option value="Clavier">Clavier</option>
+                            <option value="Souris">Souris</option>
+                            <option value="Tapis de souris">Tapis de souris</option>
+                            <option value="Casque Audio">Casque Audio</option>
+                            <option value="Webcam">Webcam</option>
+                            <option value="Tablette Graphique">Tablette Graphique</option>
+                            <option value="Colorimètre">Colorimètre</option>
+                            <option value="Scanner">Scanner</option>
+                        </optgroup>
+                        <optgroup label="Mobilité & Protection">
+                            <option value="Ordinateur Portable">Ordinateur Portable</option>
+                            <option value="Sacoche">Sacoche</option>
+                            <option value="Onduleur">Onduleur</option>
+                        </optgroup>
+                        <optgroup label="Autre">
+                            <option value="Autre">Autre</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="admin-form-group">

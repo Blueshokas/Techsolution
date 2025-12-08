@@ -12,18 +12,30 @@ try {
     $stmt = $pdo->query("SELECT * FROM pcs ORDER BY prix ASC");
     $pcs = $stmt->fetchAll();
     
-    // Récupérer les périphériques par département
-    $stmt = $pdo->query("SELECT * FROM peripheriques ORDER BY departement, type");
-    $peripheriques = $stmt->fetchAll();
+
     
-    // Grouper par département
-    $periph_by_dept = [];
-    foreach ($peripheriques as $periph) {
-        $periph_by_dept[$periph['departement']][] = $periph;
+    // Récupérer les périphériques par PC
+    $peripheriques_by_pc = [];
+    try {
+        foreach ($pcs as $pc) {
+            $stmt = $pdo->prepare("
+                SELECT p.nom, p.type 
+                FROM peripheriques p 
+                JOIN pc_peripheriques pp ON p.id = pp.peripherique_id 
+                WHERE pp.pc_id = ?
+                ORDER BY p.type, p.nom
+            ");
+            $stmt->execute([$pc['id']]);
+            $peripheriques_by_pc[$pc['nom']] = $stmt->fetchAll();
+        }
+    } catch(Exception $e) {
+        // Si les tables n'existent pas encore
+        $peripheriques_by_pc = [];
     }
+    
 } catch(Exception $e) {
     $pcs = [];
-    $periph_by_dept = [];
+    $peripheriques_by_pc = [];
 }
 ?>
 <!DOCTYPE html>
@@ -59,16 +71,64 @@ try {
                             <strong>Composants:</strong>
                             <ul>
                                 <?php 
-                                // Utiliser la description pour afficher les composants
-                                $composants_list = explode(' | ', $pc['description']);
-                                foreach ($composants_list as $composant): 
-                                    if (trim($composant)):
+                                try {
+                                    $stmt = $pdo->prepare("
+                                        SELECT c.nom, c.type 
+                                        FROM components c 
+                                        JOIN pc_components pc ON c.id = pc.component_id 
+                                        WHERE pc.pc_id = ?
+                                        ORDER BY c.type, c.nom
+                                    ");
+                                    $stmt->execute([$pc['id']]);
+                                    $composants = $stmt->fetchAll();
+                                    
+                                    if ($composants):
+                                        foreach ($composants as $composant):
                                 ?>
-                                <li><?php echo htmlspecialchars($composant); ?></li>
+                                <li><?php echo htmlspecialchars($composant['type'] . ': ' . $composant['nom']); ?></li>
+                                <?php 
+                                        endforeach;
+                                    else:
+                                ?>
+                                <li>Aucun composant assigné</li>
                                 <?php 
                                     endif;
-                                endforeach; 
+                                } catch(Exception $e) {
                                 ?>
+                                <li>Erreur de chargement</li>
+                                <?php } ?>
+                            </ul>
+                            
+                            <strong>Périphériques:</strong>
+                            <ul>
+                                <?php 
+                                try {
+                                    $stmt = $pdo->prepare("
+                                        SELECT p.nom, p.type 
+                                        FROM peripheriques p 
+                                        JOIN pc_peripheriques pp ON p.id = pp.peripherique_id 
+                                        WHERE pp.pc_id = ?
+                                        ORDER BY p.type, p.nom
+                                    ");
+                                    $stmt->execute([$pc['id']]);
+                                    $periphs = $stmt->fetchAll();
+                                    
+                                    if ($periphs):
+                                        foreach ($periphs as $periph):
+                                            $display = !empty($periph['type']) ? $periph['type'] . ': ' . $periph['nom'] : $periph['nom'];
+                                ?>
+                                <li><?php echo htmlspecialchars($display); ?></li>
+                                <?php 
+                                        endforeach;
+                                    else:
+                                ?>
+                                <li>Aucun périphérique assigné</li>
+                                <?php 
+                                    endif;
+                                } catch(Exception $e) {
+                                ?>
+                                <li>Erreur de chargement</li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
@@ -83,30 +143,7 @@ try {
         </div>
     </section>
 
-    <section class="section section-gray">
-        <div class="container">
-            <h2>Périphériques par Département</h2>
-            <div class="peripheriques-grid">
-                <?php if ($periph_by_dept): ?>
-                    <?php foreach ($periph_by_dept as $dept => $periphs): ?>
-                    <div class="dept-card">
-                        <h3><?php echo htmlspecialchars($dept); ?> (<?php echo $periphs[0]['quantite']; ?> postes)</h3>
-                        <div class="peripherique-list">
-                            <?php foreach ($periphs as $periph): ?>
-                            <div class="peripherique-item">
-                                <strong><?php echo htmlspecialchars($periph['type']); ?>:</strong> 
-                                <?php echo htmlspecialchars($periph['nom']); ?>
-                            </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p>Aucun périphérique trouvé. <a href="http://localhost/TechSolutionVF/admin/create_peripheriques.php">Créer la table</a></p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </section>
+
 
     <footer>
         <div class="container">
