@@ -13,4 +13,3 @@ exit;
 // Arrêt du script après la redirection
 // Empêche l'exécution de code supplémentaire
 ?>
-// Balise de fermeture PHP

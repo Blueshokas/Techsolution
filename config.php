@@ -36,4 +36,3 @@ if (session_status() === PHP_SESSION_NONE) {
     // Permet de stocker des variables entre les pages (ex: connexion utilisateur)
 }
 ?>
-// Balise de fermeture PHP

@@ -48,69 +48,37 @@ try {
     $peripheriques_by_pc = [];
 }
 ?>
-<!DOCTYPE html>
-<!-- Déclaration du type de document HTML5 -->
-<html lang="fr">
-<!-- Langue du document en français -->
+<!DOCTYPE html><?php // Déclaration du type de document HTML5 ?>
+<html lang="fr"><?php // Langue du document en français ?>
 <head>
-    <!-- Encodage des caractères en UTF-8 pour supporter les accents -->
-    <meta charset="UTF-8">
-    <!-- Configuration responsive pour mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Titre affiché dans l'onglet du navigateur -->
-    <title>Parc Informatique - TechSolutions</title>
-    <!-- Lien vers la feuille de style CSS -->
-    <link rel="stylesheet" href="../assets/style.css">
+    <meta charset="UTF-8"><?php // Encodage des caractères en UTF-8 pour supporter les accents ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><?php // Configuration responsive pour mobile ?>
+    <title>Parc Informatique - TechSolutions</title><?php // Titre affiché dans l'onglet du navigateur ?>
+    <link rel="stylesheet" href="../assets/style.css"><?php // Lien vers la feuille de style CSS ?>
 </head>
-<body>
-    <!-- Balise body : contient tout le contenu visible de la page -->
-    <!-- En-tête de la page admin -->
-    <header class="admin-header">
-        <!-- Balise header avec classe CSS pour le style de l'en-tête admin -->
-        <div class="container">
-            <!-- Conteneur pour centrer et limiter la largeur du contenu -->
-            <!-- Titre de la page -->
-            <h2>Parc Informatique</h2>
-            <!-- Titre de niveau 2 affiché dans l'en-tête -->
-            <div>
-                <!-- Div pour regrouper les boutons de navigation -->
-                <!-- Bouton de retour au dashboard -->
-                <a href="dashboard.php" class="admin-btn">Retour Dashboard</a>
-                <!-- Lien hypertexte vers dashboard.php avec classe CSS admin-btn -->
-                <!-- Bouton de déconnexion -->
-                <a href="logout.php" class="admin-btn">Déconnexion</a>
-                <!-- Lien hypertexte vers logout.php pour terminer la session -->
-            </div>
-            <!-- Fin du div des boutons -->
-        </div>
-        <!-- Fin du conteneur -->
-    </header>
-    <!-- Fin de l'en-tête -->
+<body><?php // Balise body : contient tout le contenu visible de la page ?>
+    <header class="admin-header"><?php // En-tête de la page admin ?>
+        <div class="container"><?php // Conteneur pour centrer et limiter la largeur du contenu ?>
+            <h2>Parc Informatique</h2><?php // Titre de niveau 2 affiché dans l'en-tête ?>
+            <div><?php // Div pour regrouper les boutons de navigation ?>
+                <a href="dashboard.php" class="admin-btn">Retour Dashboard</a><?php // Lien vers dashboard.php ?>
+                <a href="logout.php" class="admin-btn">Déconnexion</a><?php // Lien vers logout.php pour terminer la session ?>
+            </div><?php // Fin du div des boutons ?>
+        </div><?php // Fin du conteneur ?>
+    </header><?php // Fin de l'en-tête ?>
 
-    <section class="section">
-        <!-- Section principale avec classe CSS pour le style -->
-        <div class="container">
-            <!-- Conteneur pour centrer le contenu -->
-            <h1>Parc Informatique</h1>
-            <!-- Titre principal de niveau 1 -->
-            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Gestion du parc informatique de l'entreprise par poste de travail</p>
-            <!-- Paragraphe descriptif avec style inline : centré, marge basse 2rem, couleur grise -->
-            <div class="pc-grid">
-                <!-- Div avec classe pc-grid pour afficher les PC en grille CSS -->
-                <?php if ($pcs): ?>
-                    <!-- Condition PHP : si le tableau $pcs contient des données -->
-                    <?php foreach ($pcs as $pc): ?>
-                        <!-- Boucle foreach : parcourt chaque PC du tableau $pcs -->
-                    <div class="pc-card">
-                        <!-- Carte individuelle pour chaque PC avec classe CSS -->
-                        <h3><?php echo htmlspecialchars($pc['nom']); ?></h3>
-                        <!-- Titre niveau 3 : affiche le nom du PC avec échappement HTML pour sécurité -->
-                        <div class="components">
-                            <!-- Div pour regrouper les composants et périphériques -->
-                            <strong>Composants:</strong>
-                            <!-- Texte en gras pour le titre de la section composants -->
-                            <ul>
-                                <!-- Liste non ordonnée pour afficher les composants -->
+    <section class="section"><?php // Section principale avec classe CSS pour le style ?>
+        <div class="container"><?php // Conteneur pour centrer le contenu ?>
+            <h1>Parc Informatique</h1><?php // Titre principal de niveau 1 ?>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Gestion du parc informatique de l'entreprise par poste de travail</p><?php // Paragraphe descriptif avec style inline ?>
+            <div class="pc-grid"><?php // Div avec classe pc-grid pour afficher les PC en grille CSS ?>
+                <?php if ($pcs): // Condition PHP : si le tableau $pcs contient des données ?>
+                    <?php foreach ($pcs as $pc): // Boucle foreach : parcourt chaque PC du tableau $pcs ?>
+                    <div class="pc-card"><?php // Carte individuelle pour chaque PC avec classe CSS ?>
+                        <h3><?php echo htmlspecialchars($pc['nom']); ?></h3><?php // Titre niveau 3 : affiche le nom du PC avec échappement HTML ?>
+                        <div class="components"><?php // Div pour regrouper les composants et périphériques ?>
+                            <strong>Composants:</strong><?php // Texte en gras pour le titre de la section composants ?>
+                            <ul><?php // Liste non ordonnée pour afficher les composants ?>
                                 <?php 
                                 // Début du bloc PHP pour récupérer les composants
                                 try {
@@ -135,34 +103,26 @@ try {
                                         foreach ($composants as $composant):
                                             // Boucle sur chaque composant
                                 ?>
-                                <li><?php echo htmlspecialchars($composant['type'] . ': ' . $composant['nom']); ?></li>
-                                <!-- Élément de liste : affiche "Type: Nom" avec échappement HTML -->
+                                <li><?php echo htmlspecialchars($composant['type'] . ': ' . $composant['nom']); ?></li><?php // Élément de liste : affiche "Type: Nom" avec échappement HTML ?>
                                 <?php 
                                         endforeach;
                                         // Fin de la boucle foreach
                                     else:
                                         // Sinon (aucun composant trouvé)
                                 ?>
-                                <li>Aucun composant assigné</li>
-                                <!-- Message si aucun composant n'est associé au PC -->
+                                <li>Aucun composant assigné</li><?php // Message si aucun composant n'est associé au PC ?>
                                 <?php 
                                     endif;
                                     // Fin de la condition if
                                 } catch(Exception $e) {
                                     // Bloc catch : capture les erreurs SQL
                                 ?>
-                                <li>Erreur de chargement</li>
-                                <!-- Message d'erreur si la requête échoue -->
-                                <?php } ?>
-                                <!-- Fin du bloc try-catch -->
-                            </ul>
-                            <!-- Fin de la liste des composants -->
+                                <li>Erreur de chargement</li><?php // Message d'erreur si la requête échoue ?>
+                                <?php } // Fin du bloc try-catch ?>
+                            </ul><?php // Fin de la liste des composants ?>
                             
-                            
-                            <strong>Périphériques:</strong>
-                            <!-- Texte en gras pour le titre de la section périphériques -->
-                            <ul>
-                                <!-- Liste non ordonnée pour afficher les périphériques -->
+                            <strong>Périphériques:</strong><?php // Texte en gras pour le titre de la section périphériques ?>
+                            <ul><?php // Liste non ordonnée pour afficher les périphériques ?>
                                 <?php 
                                 // Début du bloc PHP pour récupérer les périphériques
                                 try {
@@ -189,69 +149,40 @@ try {
                                             $display = !empty($periph['type']) ? $periph['type'] . ': ' . $periph['nom'] : $periph['nom'];
                                             // Opérateur ternaire : si type existe, affiche "Type: Nom", sinon juste le nom
                                 ?>
-                                <li><?php echo htmlspecialchars($display); ?></li>
-                                <!-- Élément de liste : affiche le périphérique avec échappement HTML -->
+                                <li><?php echo htmlspecialchars($display); ?></li><?php // Élément de liste : affiche le périphérique avec échappement HTML ?>
                                 <?php 
                                         endforeach;
                                         // Fin de la boucle foreach
                                     else:
                                         // Sinon (aucun périphérique trouvé)
                                 ?>
-                                <li>Aucun périphérique assigné</li>
-                                <!-- Message si aucun périphérique n'est associé au PC -->
+                                <li>Aucun périphérique assigné</li><?php // Message si aucun périphérique n'est associé au PC ?>
                                 <?php 
                                     endif;
                                     // Fin de la condition if
                                 } catch(Exception $e) {
                                     // Bloc catch : capture les erreurs SQL
                                 ?>
-                                <li>Erreur de chargement</li>
-                                <!-- Message d'erreur si la requête échoue -->
-                                <?php } ?>
-                                <!-- Fin du bloc try-catch -->
-                            </ul>
-                            <!-- Fin de la liste des périphériques -->
-                        </div>
-                        <!-- Fin du div components -->
-                    </div>
-                    <!-- Fin de la carte PC -->
-                    <?php endforeach; ?>
-                    <!-- Fin de la boucle foreach des PC -->
-                <?php else: ?>
-                    <!-- Bloc else : si le tableau $pcs est vide -->
-                    <div class="pc-card">
-                        <!-- Carte pour afficher un message si aucun PC -->
-                        <h3>Aucun PC disponible</h3>
-                        <!-- Titre indiquant l'absence de PC -->
-                        <p>Revenez bientôt pour découvrir nos nouveaux modèles !</p>
-                        <!-- Message d'information pour l'utilisateur -->
-                    </div>
-                    <!-- Fin de la carte -->
-                <?php endif; ?>
-                <!-- Fin de la condition if ($pcs) -->
-            </div>
-            <!-- Fin du div pc-grid -->
-        </div>
-        <!-- Fin du conteneur -->
-    </section>
-    <!-- Fin de la section principale -->
+                                <li>Erreur de chargement</li><?php // Message d'erreur si la requête échoue ?>
+                                <?php } // Fin du bloc try-catch ?>
+                            </ul><?php // Fin de la liste des périphériques ?>
+                        </div><?php // Fin du div components ?>
+                    </div><?php // Fin de la carte PC ?>
+                    <?php endforeach; // Fin de la boucle foreach des PC ?>
+                <?php else: // Bloc else : si le tableau $pcs est vide ?>
+                    <div class="pc-card"><?php // Carte pour afficher un message si aucun PC ?>
+                        <h3>Aucun PC disponible</h3><?php // Titre indiquant l'absence de PC ?>
+                        <p>Revenez bientôt pour découvrir nos nouveaux modèles !</p><?php // Message d'information pour l'utilisateur ?>
+                    </div><?php // Fin de la carte ?>
+                <?php endif; // Fin de la condition if ($pcs) ?>
+            </div><?php // Fin du div pc-grid ?>
+        </div><?php // Fin du conteneur ?>
+    </section><?php // Fin de la section principale ?>
 
-
-
-
-
-
-    <footer>
-        <!-- Pied de page du site -->
-        <div class="container">
-            <!-- Conteneur pour centrer le contenu du footer -->
-            <p>&copy; 2024 TechSolutions. Tous droits réservés.</p>
-            <!-- Paragraphe avec copyright et symbole © (entité HTML &copy;) -->
-        </div>
-        <!-- Fin du conteneur -->
-    </footer>
-    <!-- Fin du pied de page -->
-</body>
-<!-- Fin du body -->
+    <footer><?php // Pied de page du site ?>
+        <div class="container"><?php // Conteneur pour centrer le contenu du footer ?>
+            <p>&copy; 2024 TechSolutions. Tous droits réservés.</p><?php // Paragraphe avec copyright et symbole © ?>
+        </div><?php // Fin du conteneur ?>
+    </footer><?php // Fin du pied de page ?>
+</body><?php // Fin du body ?>
 </html>
-<!-- Fin du document HTML -->

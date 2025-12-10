@@ -121,9 +121,6 @@ if ($_POST) {
             <a href="../index.php">← Retour au site</a>
             <!-- Lien vers la page d'accueil avec flèche gauche (←) -->
         </p>
-    </div>
-    <!-- Fin de la boîte de connexion -->
-</body>
-<!-- Fin du body -->
+    </div><?php // Fin de la boîte de connexion ?>
+</body><?php // Fin du body ?>
 </html>
-<!-- Fin du HTML -->

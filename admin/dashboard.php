@@ -152,9 +152,9 @@ try {
             <div class="action-card">
                 <!-- Carte : Utilisateurs -->
                 <h3>Utilisateurs</h3>
-                <p>Créer de nouveaux comptes administrateur.</p>
-                <a href="./add_user.php" class="admin-btn">Créer utilisateur</a>
-                <!-- Bouton vers la création d'utilisateur -->
+                <p>Gérer les comptes administrateur.</p>
+                <a href="users_admin.php" class="admin-btn">Gérer utilisateurs</a>
+                <!-- Bouton vers la gestion des utilisateurs -->
             </div>
             <div class="action-card">
                 <!-- Carte : Retour au site -->
@@ -171,11 +171,7 @@ try {
                 <!-- Bouton vers la visualisation du parc informatique -->
             </div>
 
-        </div>
-        <!-- Fin actions -->
-    </div>
-    <!-- Fin admin-container -->
-</body>
-<!-- Fin body -->
+        </div><?php // Fin actions ?>
+    </div><?php // Fin admin-container ?>
+</body><?php // Fin body ?>
 </html>
-<!-- Fin HTML -->

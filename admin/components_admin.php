@@ -252,11 +252,7 @@ try {
                 <!-- Message -->
             <?php endif; ?>
             <!-- Fin condition -->
-        </div>
-        <!-- Fin pc-list -->
-    </div>
-    <!-- Fin admin-container -->
-</body>
-<!-- Fin body -->
+        </div><?php // Fin pc-list ?>
+    </div><?php // Fin admin-container ?>
+</body><?php // Fin body ?>
 </html>
-<!-- Fin HTML -->
