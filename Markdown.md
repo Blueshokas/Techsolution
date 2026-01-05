@@ -13,8 +13,9 @@
 ## RESTAURATION (PC Destination)
 
 ### Étape 1 : Restaurer les fichiers
-1. Recuperer le dossier `Techsolution` dans github 
-2. Coller le dossier `TechSolution` dans `c:\xampp\htdocs\`
+1. Telecharger le dossier `Techsolution` dans github avec "Download Zip" dans l'onglet "CODE"
+2. Extraire `Techsolution.zip` et copier le nouveau fichier
+3. Coller le dossier `TechSolution` dans `c:\xampp\htdocs\`
 
 ### Étape 2 : Restaurer la base de données
 1. Ouvrir phpMyAdmin : `http://localhost/phpmyadmin`
@@ -22,7 +23,7 @@
 3. Sélectionner la base `techsolution`
 4. Cliquer sur l'onglet **Importer**
 5. Cliquer sur **Choisir un fichier**
-6. Sélectionner `techsolution_backup.sql`
+6. Sélectionner `techsolution.sql`
 7. Cliquer sur **Exécuter**
 
 ### Étape 3 : Vérifier la configuration
@@ -30,6 +31,4 @@
 2. Vérifier les paramètres de connexion 
 
 ### Étape 4 : Tester le site
-- Site public : `http://localhost/TechSolutionVF/`
-- Administration : `http://localhost/TechSolutionVF/admin/login.php`
-
+- Site public : `http://localhost/TechSolution/index.php`
