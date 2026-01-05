@@ -4,15 +4,17 @@
 
 ### Étape 1 : Sauvegarde des fichier
 
-1 Ouvrir le dossier Techsolution
-2 Lancer le script "saveTS.bat"
-3 Attendre la fin du script
+1. Ouvrir Xampp et lancer apache et mysql
+2. Ouvrir le dossier Techsolution
+3. Lancer le script "saveTS.bat"
+4. Attendre la fin du script
 ---
 
 ## RESTAURATION (PC Destination)
 
 ### Étape 1 : Restaurer les fichiers
-1. Coller le dossier `TechSolution` dans `c:\xampp\htdocs\`
+1. Recuperer le dossier `Techsolution` dans github 
+2. Coller le dossier `TechSolution` dans `c:\xampp\htdocs\`
 
 ### Étape 2 : Restaurer la base de données
 1. Ouvrir phpMyAdmin : `http://localhost/phpmyadmin`
