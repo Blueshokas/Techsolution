@@ -1,10 +1,13 @@
 <?php
 require_once '../config.php';
+require_once 'permissions.php';
 
 if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
     header('Location: login.php');
     exit;
 }
+
+checkRole('admin');
 
 $message = '';
 $error = '';
@@ -12,25 +15,21 @@ $error = '';
 if ($_POST) {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
+    $role = $_POST['role'];
     
-    if (empty($username) || empty($password)) {
+    if (empty($username) || empty($password) || empty($role)) {
         $error = "Tous les champs sont requis";
     } else {
         try {
-            // Vérifier si l'utilisateur existe déjà
             $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
             $stmt->execute([$username]);
             
             if ($stmt->fetch()) {
                 $error = "Cet utilisateur existe déjà";
             } else {
-                // Hasher le mot de passe
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                
-                // Insérer le nouvel utilisateur
-                $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-                $stmt->execute([$username, $hashedPassword]);
-                
+                $stmt = $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+                $stmt->execute([$username, $hashedPassword, $role]);
                 $message = "Utilisateur créé avec succès";
             }
         } catch(Exception $e) {
@@ -71,6 +70,15 @@ if ($_POST) {
             <div class="admin-form-group">
                 <label>Mot de passe</label>
                 <input type="password" name="password" required>
+            </div>
+            
+            <div class="admin-form-group">
+                <label>Rôle</label>
+                <select name="role" required>
+                    <option value="utilisateur">Utilisateur</option>
+                    <option value="technicien">Technicien</option>
+                    <option value="admin">Admin</option>
+                </select>
             </div>
             
             <button type="submit" class="admin-btn">Créer l'utilisateur</button>

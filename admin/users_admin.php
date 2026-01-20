@@ -1,36 +1,34 @@
 <?php
-// Inclusion du fichier de configuration
 require_once '../config.php';
+require_once 'permissions.php';
 
-// Vérification de l'authentification admin
 if (!isset($_SESSION['admin_logged']) || !$_SESSION['admin_logged']) {
     header('Location: login.php');
     exit;
 }
+
+checkRole('admin');
 
 $message = '';
 
 // Gestion des actions
 if ($_POST) {
     if ($_POST['action'] === 'add_user') {
-        // Action : ajouter un utilisateur
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
+        $role = $_POST['role'];
         
-        if ($username && $password) {
+        if ($username && $password && $role) {
             try {
-                // Vérifier si l'utilisateur existe déjà
                 $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
                 $stmt->execute([$username]);
                 
                 if ($stmt->fetch()) {
                     $message = "Cet utilisateur existe déjà";
                 } else {
-                    // Hasher le mot de passe
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                    // Insérer le nouvel utilisateur
-                    $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-                    $stmt->execute([$username, $hashedPassword]);
+                    $stmt = $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+                    $stmt->execute([$username, $hashedPassword, $role]);
                     $message = "Utilisateur créé avec succès !";
                 }
             } catch(Exception $e) {
@@ -96,9 +94,17 @@ try {
                     <label for="username">Nom d'utilisateur *</label><?php // Étiquette ?>
                     <input type="text" id="username" name="username" required><?php // Champ texte obligatoire ?>
                 </div>
-                <div class="admin-form-group"><?php // Groupe mot de passe ?>
-                    <label for="password">Mot de passe *</label><?php // Étiquette ?>
-                    <input type="password" id="password" name="password" required><?php // Champ mot de passe obligatoire ?>
+                <div class="admin-form-group">
+                    <label for="password">Mot de passe *</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="admin-form-group">
+                    <label for="role">Rôle *</label>
+                    <select id="role" name="role" required>
+                        <option value="utilisateur">Utilisateur</option>
+                        <option value="technicien">Technicien</option>
+                        <option value="admin">Admin</option>
+                    </select>
                 </div>
                 <button type="submit" class="admin-btn">Ajouter</button><?php // Bouton de soumission ?>
             </form><?php // Fin formulaire ?>
@@ -108,11 +114,16 @@ try {
             <h2>Utilisateurs existants</h2><?php // Titre section ?>
             <?php if ($users): // Si des utilisateurs existent ?>
                 <?php foreach ($users as $user): // Boucle sur chaque utilisateur ?>
-                <div class="pc-item" style="grid-template-columns: 2fr 1fr;"><?php // Item utilisateur avec grille 2 colonnes ?>
-                    <div><?php // Colonne 1 : nom ?>
-                        <div class="pc-name"><?php echo htmlspecialchars($user['username']); ?></div><?php // Nom de l'utilisateur ?>
+                <div class="pc-item" style="grid-template-columns: 2fr 1fr 1fr;">
+                    <div>
+                        <div class="pc-name"><?php echo htmlspecialchars($user['username']); ?></div>
                     </div>
-                    <div><?php // Colonne 2 : actions ?>
+                    <div>
+                        <span style="padding: 0.25rem 0.5rem; background: #e3f2fd; border-radius: 4px; font-size: 0.9rem;">
+                            <?php echo htmlspecialchars($user['role']); ?>
+                        </span>
+                    </div>
+                    <div>
                         <form method="post" style="display: inline;"><?php // Formulaire inline pour la suppression ?>
                             <input type="hidden" name="action" value="delete_user"><?php // Action : delete_user ?>
                             <input type="hidden" name="id" value="<?php echo $user['id']; ?>"><?php // ID de l'utilisateur à supprimer ?>

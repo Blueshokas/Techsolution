@@ -17,24 +17,15 @@ if ($_POST) {
     try {
         // Bloc try pour gérer les erreurs de base de données
         $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-        // Préparation de la requête SQL pour rechercher l'utilisateur
-        // SELECT * récupère toutes les colonnes de la table users
         $stmt->execute([$username]);
-        // Exécution de la requête avec le nom d'utilisateur
         $user = $stmt->fetch();
-        // Récupère la ligne de l'utilisateur (ou false si non trouvé)
         
         if ($user && password_verify($password, $user['password'])) {
-            // Condition : vérifie que l'utilisateur existe ET que le mot de passe est correct
-            // password_verify() compare le mot de passe saisi avec le hash stocké en BDD
             $_SESSION['admin_logged'] = true;
-            // Crée une variable de session pour indiquer que l'admin est connecté
             $_SESSION['admin_username'] = $user['username'];
-            // Stocke le nom d'utilisateur dans la session
+            $_SESSION['admin_role'] = $user['role'];
             header('Location: dashboard.php');
-            // Redirection vers le tableau de bord
             exit;
-            // Arrêt du script après redirection
         } else {
             // Sinon (utilisateur inexistant ou mot de passe incorrect)
             $error = "Identifiants incorrects";
